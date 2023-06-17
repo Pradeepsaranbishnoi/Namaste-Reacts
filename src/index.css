@@ -23,6 +23,7 @@
   border:1px solid black;
   border-radius: 10px;
   padding: 10px 20px;
+  word-wrap: break-word;
 }
 .res-card:hover{
   box-shadow: 5px 5px 5px #0000003d;
