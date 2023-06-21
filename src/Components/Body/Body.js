@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import RestaurantCard from './RestaurantCard'
-import resList from '../../Utils/mockData'
+// import resList from '../../Utils/mockData'
 import { ShimmerPostList } from "react-shimmer-effects";
 
-let demorestList = [...resList]
+
 
 const Body = () => {
 
-  const [resList, setReslist] = useState("")
-
+  const [resList, setReslist] = useState('')
+  const [searchText,setSearchText] = useState('')
+  const [filteredSearch, setFilteredSearch] = useState('')
+  
   useEffect(()=>{
     fetchData();
   },[])
@@ -17,31 +19,47 @@ const Body = () => {
     const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=26.2389469&lng=73.02430939999999&page_type=DESKTOP_WEB_LISTING");
 
     const json = await data.json();
-    console.log(json);
     setReslist(json?.data?.cards[2]?.data?.data?.cards);
+    setFilteredSearch(json?.data?.cards[2]?.data?.data?.cards);
   };
-
 
   return (
     <div className='body'>
       <div className='filter-btn'>
+        <div className='search'>
+          <input type='text' className='searh-box' value={searchText} 
+          onChange={(e)=> setSearchText(e.target.value)}/>
+          
+          <button onClick={()=>{
+          console.log(searchText);
+
+            const filteredSearch =  resList.filter((e) =>e.data.name.toLowerCase().includes(searchText.toLowerCase())
+            );
+            
+            setFilteredSearch(filteredSearch)
+            console.log(filteredSearch)
+
+          }}
+          >Search</button>
+        </div>
         <button onClick={(e) => {
-          const result = demorestList.filter(
+          const result = filteredSearch.filter(
             (e) => e.data.avgRating > 4
           );
           setReslist(result)
           console.log(result);
         }}>Top Rated Restaurant</button>
-        <button onClick={(e) => {
+
+        {/* <button onClick={(e) => {
           setReslist(demorestList)
           console.log(demorestList);
-        }}>Reset</button>
+        }}>Reset</button> */}
       </div>
       { 
         resList ?
           <div className='res-container'>
             {
-              resList.map((e) => (<RestaurantCard key={e.data.id} {...e} />))
+              filteredSearch.map((e) => (<RestaurantCard key={e.data.id} {...e} />))
             }
           </div> : 
         <>
