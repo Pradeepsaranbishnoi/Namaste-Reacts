@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import RestaurantCard from './RestaurantCard'
 // import resList from '../../Utils/mockData'
 import { ShimmerPostList } from "react-shimmer-effects";
+import { Link } from 'react-router-dom';
 
 
 
@@ -50,16 +51,15 @@ const Body = () => {
           console.log(result);
         }}>Top Rated Restaurant</button>
 
-        {/* <button onClick={(e) => {
-          setReslist(demorestList)
-          console.log(demorestList);
-        }}>Reset</button> */}
       </div>
       { 
         resList ?
           <div className='res-container'>
             {
-              filteredSearch.map((e) => (<RestaurantCard key={e.data.id} {...e} />))
+              filteredSearch.map((e) => (
+                <Link to={"/restaurants/" + e.data.id}>
+              <RestaurantCard key={e.data.id} {...e} /></Link>
+              ))
             }
           </div> : 
         <>
