@@ -3,7 +3,7 @@ import RestaurantCard from './RestaurantCard'
 // import resList from '../../Utils/mockData'
 import { ShimmerPostList } from "react-shimmer-effects";
 import { Link } from 'react-router-dom';
-
+import useOnlineStatus from '../Utils/useOnlineStatus';
 
 
 const Body = () => {
@@ -23,6 +23,10 @@ const Body = () => {
     setReslist(json?.data?.cards[2]?.data?.data?.cards);
     setFilteredSearch(json?.data?.cards[2]?.data?.data?.cards);
   };
+
+  const onlineStatus = useOnlineStatus();
+
+  if(onlineStatus === false) return <><h1>Your are offiline please check your internet connection</h1></>
 
   return (
     <div className='body'>
