@@ -21,10 +21,17 @@ const About = () => {
 
     return (
         <>
-            <img src={avatar_url} alt="avatar" />
-            <h1>My Name is: {name}</h1>
-            <h2>{bio}</h2>
-            <h2>I am from: {location}</h2>
+        <div className="flex my-16 gap-10">
+            <div>
+                <img className="w-50 m-auto rounded-xl" src={avatar_url} alt="avatar" />
+            </div>
+            <div>
+                <h1 className="text-2xl font-extrabold">My Name is: {name}</h1>
+                <h2>{bio}</h2>
+                <h2>I am from: {location}</h2>
+            </div>
+        </div>
+            
         </>
     )
 }

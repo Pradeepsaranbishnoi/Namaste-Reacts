@@ -17,27 +17,27 @@ const Body = () => {
   },[])
 
   const fetchData = async () =>{
-    const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=26.2389469&lng=73.02430939999999&page_type=DESKTOP_WEB_LISTING");
+    const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=26.2389469&lng=73.02430939999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
 
     const json = await data.json();
-    setReslist(json?.data?.cards[2]?.data?.data?.cards);
-    setFilteredSearch(json?.data?.cards[2]?.data?.data?.cards);
+    console.log(json)
+    setReslist(json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+    setFilteredSearch(json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
   };
 
   const onlineStatus = useOnlineStatus();
 
   if(onlineStatus === false) return <><h1>Your are offiline please check your internet connection</h1></>
-
+  
   return (
     <div className='body'>
-      <div className='filter-btn'>
-        <div className='search'>
-          <input type='text' className='searh-box' value={searchText} 
+      <div className='filter-btn flex gap-10 my-5 px-5 items-center'>
+        <div className='search flex gap-5 rounded-lg'>
+          <input type='text' className='border rounded-lg' value={searchText} 
           onChange={(e)=> setSearchText(e.target.value)}/>
           
-          <button onClick={()=>{
+          <button className='bg-green-200 px-5 py-2 rounded-lg' onClick={()=>{
           console.log(searchText);
-
             const filteredSearch =  resList.filter((e) =>e.data.name.toLowerCase().includes(searchText.toLowerCase())
             );
             
@@ -47,22 +47,23 @@ const Body = () => {
           }}
           >Search</button>
         </div>
-        <button onClick={(e) => {
-          const result = filteredSearch.filter(
-            (e) => e.data.avgRating > 4
-          );
-          setReslist(result)
-          console.log(result);
-        }}>Top Rated Restaurant</button>
-
+        <div>
+          <button className='bg-orange-200 px-5 py-2 rounded-lg ' onClick={(e) => {
+            const result = filteredSearch.filter(
+              (e) => e.data.avgRating > 4
+            );
+            setReslist(result)
+            console.log(result);
+          }}>Top Rated Restaurant</button>
+        </div>
       </div>
       { 
         resList ?
-          <div className='res-container'>
+          <div className='flex flex-wrap gap-6 justify-center'>
             {
               filteredSearch.map((e) => (
-                <Link to={"/restaurants/" + e.data.id}>
-              <RestaurantCard key={e.data.id} {...e} /></Link>
+                <Link to={"/restaurants/" + e.info.id}>
+              <RestaurantCard key={e.info.id} {...e} /></Link>
               ))
             }
           </div> : 
