@@ -72,7 +72,9 @@ const Body = () => {
             }
           </div> : 
         <>
-        <ShimmerPostList postStyle="STYLE_FOUR" col={4} row={2} gap={30} />
+        <div className='container mx-auto'>
+          <ShimmerPostList postStyle="STYLE_FOUR" col={4} row={2} gap={30} />
+        </div>
         </>
       }
       
