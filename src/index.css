@@ -1,47 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
- /* .header{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+body{
+    font-family: poppins;
 }
-.logo{
-  width: 150px;
-}
-.nav-items > ul{
-  display: flex;
-  list-style-type: none;
-}
-.nav-items > ul > li{
-  padding: 0px 20px;
-}
-
-.search {
-  margin: 20px;
-}
-.res-card{
-  width: 200px;
-  min-height: 300px;
-  border:1px solid black;
-  border-radius: 10px;
-  padding: 10px 20px;
-  word-wrap: break-word;
-}
-.res-card:hover{
-  box-shadow: 5px 5px 5px #0000003d;
-  cursor: pointer;
-}
-.res-img{
-  width: 100%;
-  border-radius: 10px;
-}
-.res-container{
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-.filter-btn{
-  display: flex;
-}  */
