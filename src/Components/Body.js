@@ -21,7 +21,7 @@ const Body = () => {
     const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=26.2389469&lng=73.02430939999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
 
     const json = await data.json();
-    console.log(json)
+    // console.log(json)
     setReslist(json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     setFilteredSearch(json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
   };
@@ -38,12 +38,12 @@ const Body = () => {
           onChange={(e)=> setSearchText(e.target.value)}/>
           
           <button className='bg-green-200 hover:bg-green-300 px-5 py-2 rounded-lg' onClick={()=>{
-          console.log(searchText);
-            const filteredSearch =  resList.filter((e) =>e.data.name.toLowerCase().includes(searchText.toLowerCase())
+          // console.log(searchText);
+            const filteredSearch =  resList.filter((e) =>e.info.name.toLowerCase().includes(searchText.toLowerCase())
             );
             
             setFilteredSearch(filteredSearch)
-            console.log(filteredSearch)
+            // console.log(filteredSearch)
 
           }}
           >Search</button>
@@ -51,10 +51,10 @@ const Body = () => {
         <div>
           <button className='bg-orange-200 hover:bg-orange-300 px-5 py-2 rounded-lg ' onClick={(e) => {
             const result = filteredSearch.filter(
-              (e) => e.data.avgRating > 4
+              (e) => e.info.avgRating > 4
             );
             setReslist(result)
-            console.log(result);
+            // console.log(result);
           }}>Top Rated Restaurant</button>
         </div>
       </div>
