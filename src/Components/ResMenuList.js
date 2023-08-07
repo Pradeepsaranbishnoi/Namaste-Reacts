@@ -22,4 +22,5 @@ const ResMenuList = (item) =>{
         </>
     )
 }
+
 export default ResMenuList

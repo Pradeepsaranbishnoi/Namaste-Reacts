@@ -68,4 +68,5 @@ console.log(resInfo)
     </>
   );
 };
-export default ResMenu;
+
+export default ResMenu
