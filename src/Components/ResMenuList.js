@@ -1,4 +1,5 @@
-import { CDN_URL } from "../Utils/constants"
+import { CDN_URL, NO_IMAGE } from "../Utils/constants"
+
 
 const ResMenuList = (item) =>{
     // console.log(item)
@@ -16,7 +17,7 @@ const ResMenuList = (item) =>{
                 <p className="text-sm">{item.data.description}</p>
             </div>
             <div className="w-2/12">
-                <img className="rounded-lg" alt='itemlist-img' src={CDN_URL + item.data.imageId} />
+                <img className="rounded-lg" alt='itemlist-img' src={CDN_URL + item.data.imageId !== CDN_URL + undefined  ? CDN_URL + item.data.imageId : NO_IMAGE} />
             </div>
         </div>
         </>
